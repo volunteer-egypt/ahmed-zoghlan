@@ -221,3 +221,15 @@ body{font-family:'Cairo','Inter',system-ui,sans-serif;background:var(--sand);col
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
 }
+
+/* ===== Soft polish pass (mobile-first, Ahmed 3:22) ===== */
+.brand{color:#fff;transition:color .15s}
+.brand:hover{color:var(--gold-bright)}
+.page-head{padding-top:36px}
+.topbar{box-shadow:0 1px 10px rgba(12,31,51,.18)}
+@media(max-width:760px){
+  .page-head{padding-top:26px}
+  .topbar-in{row-gap:2px;padding-top:4px;padding-bottom:4px;height:auto;min-height:52px}
+  .topnav{padding-bottom:4px}
+  .hero{padding:36px 0 30px}
+}
