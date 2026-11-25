@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أحمد زغلان | Ahmed Zoghlan</title>
+<meta name="description" content="أحمد زغلان — أخصائي مخازن في مشروعات التشييد والبنية التحتية | Ahmed Zoghlan — Storekeeper Specialist, Construction & Infrastructure Projects">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <div class="brand" id="brand">أحمد زغلان</div>
+    <nav class="nav" id="nav">
+      <a href="#about" data-i18n="nav_about">نبذة</a>
+      <a href="#experience" data-i18n="nav_exp">الخبرات</a>
+      <a href="#skills" data-i18n="nav_skills">المهارات</a>
+      <a href="#education" data-i18n="nav_edu">التعليم</a>
+      <a href="#leadership" data-i18n="nav_lead">القيادة</a>
+      <a href="#contact" data-i18n="nav_contact">تواصل</a>
+    </nav>
+    <button class="lang-toggle" id="langToggle" aria-label="Language">EN</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-photo hidden" id="heroPhoto"><img id="heroImg" alt=""></div>
+    <div class="hero-badge" id="heroBadge"></div>
+    <h1 id="heroName"></h1>
+    <p class="hero-title" id="heroTitle"></p>
+    <p class="hero-loc" id="heroLoc"></p>
+    <div class="hero-cta">
+      <a class="btn primary" id="heroLinkedin" target="_blank" rel="noopener" data-i18n="cta_linkedin">LinkedIn</a>
+      <a class="btn ghost" href="#contact" data-i18n="cta_contact">تواصل معي</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section id="about" class="card">
+    <h2 data-i18n="sec_about">نبذة مهنية</h2>
+    <p id="aboutText" class="lead"></p>
+  </section>
+
+  <section id="experience" class="card">
+    <h2 data-i18n="sec_exp">الخبرات العملية</h2>
+    <div class="timeline" id="timeline"></div>
+    <p class="service-line" id="serviceLine"></p>
+  </section>
+
+  <section id="skills" class="card">
+    <h2 data-i18n="sec_skills">المهارات</h2>
+    <div class="tags" id="skillsTags"></div>
+  </section>
+
+  <section id="education" class="card">
+    <h2 data-i18n="sec_edu">التعليم والتدريب</h2>
+    <p class="lead" id="eduText"></p>
+    <h3 data-i18n="sec_training">دورات وتدريبات</h3>
+    <ul class="training" id="trainingList"></ul>
+  </section>
+
+  <section id="community" class="card">
+    <h2 data-i18n="sec_community">العمل المجتمعي</h2>
+    <ul class="training" id="communityList"></ul>
+  </section>
+
+  <section id="leadership" class="card">
+    <h2 data-i18n="sec_lead">الأنشطة القيادية</h2>
+    <ul class="training" id="leadershipList"></ul>
+  </section>
+
+  <section id="photos" class="card hidden">
+    <h2 data-i18n="sec_photos">صور</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="contact" class="card">
+    <h2 data-i18n="sec_contact">تواصل</h2>
+    <div class="contact-row">
+      <a class="btn primary" id="contactLinkedin" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <form id="contactForm" class="contact-form">
+      <input type="text" id="cfName" data-i18n-ph="cf_name" placeholder="الاسم" required maxlength="100">
+      <input type="text" id="cfContact" data-i18n-ph="cf_contact" placeholder="وسيلة التواصل (اختياري)" maxlength="150">
+      <textarea id="cfMsg" data-i18n-ph="cf_msg" placeholder="رسالتك" required maxlength="2000" rows="4"></textarea>
+      <button class="btn primary" type="submit" data-i18n="cf_send">إرسال</button>
+      <p class="form-note" id="cfNote"></p>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap" id="footerText"></div>
+</footer>
+
+<button id="chatFab" class="chat-fab" aria-label="Assistant">✦</button>
+<div id="chatBox" class="chat-box hidden">
+  <div class="chat-head"><span data-i18n="chat_title">مساعد الموقع</span><button id="chatClose" aria-label="Close">×</button></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <form class="chat-form" id="chatForm">
+    <input type="text" id="chatInput" data-i18n-ph="chat_ph" placeholder="اسأل عن أحمد..." maxlength="500" autocomplete="off">
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+
+<script src="assets/js/data.js?v=1"></script>
+<script src="assets/js/site.js?v=1"></script>
+</body>
+</html>
