@@ -37,7 +37,7 @@ window.SITE_DATA = {
       points_en: ["Infrastructure works in the New Administrative Capital", "Coordinated storekeepers"]
     },
     {
-      org_ar: "جيكو", org_en: "GIECO",
+      org_ar: "الغرابلي للأعمال الهندسية المتكاملة", org_en: "Ghrabli Integrated Engineering Works",
       role_ar: "أمين مخزن", role_en: "Storekeeper",
       from_ar: "يوليو 2021", from_en: "Jul 2021", to_ar: "أبريل 2023", to_en: "Apr 2023",
       points_ar: ["مشروع تطوير ميناء العريش البحري"],
