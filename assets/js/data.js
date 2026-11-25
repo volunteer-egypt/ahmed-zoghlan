@@ -73,21 +73,30 @@ window.SITE_DATA = {
     {ar:"تدريب المدربين TOT", en:"Training of Trainers (TOT)"}
   ],
   leadership: [
+    {ar:"عضو برلمان شباب مصر — الدورة الحالية 2026", en:"Member, Egyptian Youth Parliament — current session, 2026"},
     {ar:"تمثيل الجبهة الدبلوماسية المصرية في لقاء مع وزير الشباب والرياضة", en:"Represented the Egyptian Diplomatic Front at a meeting with the Minister of Youth and Sports"},
     {ar:"تمثيل اتحاد طلاب تحيا مصر في لقاءات مع محافظ شمال سيناء", en:"Represented the Tahya Misr student union in meetings with the North Sinai Governor"},
     {ar:"قيادة دفعة التخرج بالجامعة", en:"Graduation-batch leadership at university"},
     {ar:"قيادة لجان ونشاط اتحاد الطلاب", en:"Committee leadership and student-union activity"},
-    {ar:"معسكرات قيادات الجامعة", en:"University leadership camps"},
-    {ar:"عضو برلمان شباب مصر — الدورة الحالية 2026", en:"Member, Egyptian Youth Parliament — current session, 2026"}
+    {ar:"معسكرات قيادات الجامعة", en:"University leadership camps"}
   ],
+  hero_extra_ar: "عضو برلمان شباب مصر — الدورة الحالية 2026",
+  hero_extra_en: "Member, Egyptian Youth Parliament — current session, 2026",
   hero_photo: "https://lh3.googleusercontent.com/d/1uUsqMM9WvQAByBOzwxUGhfP0xMjPg6Vi",
   community: [
     {ar:"العمل الإنساني ومعسكر إدارة الأزمات والكوارث — سيناء", en:"Humanitarian work and crisis/disaster-management camp — Sinai"},
     {ar:"مشاركة مجتمعية مع مؤسسة حياة كريمة", en:"Community participation with the Hayah Karima Foundation"}
   ],
-  photos: ["https://lh3.googleusercontent.com/d/1uUsqMM9WvQAByBOzwxUGhfP0xMjPg6Vi", "https://lh3.googleusercontent.com/d/194Pe7aDz4oS16wdwhlDyt7dKUJWR-U1E", "https://lh3.googleusercontent.com/d/14ZvP3L_W-pantZwdj_99xPKx8HjiPOBv", "https://lh3.googleusercontent.com/d/1WWSPRKk2fZgCv9oEokobRCYJikjS0x0Y"],
+  photos: ["https://lh3.googleusercontent.com/d/194Pe7aDz4oS16wdwhlDyt7dKUJWR-U1E", "https://lh3.googleusercontent.com/d/14ZvP3L_W-pantZwdj_99xPKx8HjiPOBv", "https://lh3.googleusercontent.com/d/1WWSPRKk2fZgCv9oEokobRCYJikjS0x0Y"],
+  photo_alts: {
+    ar: ["أحمد زغلان في قاعة مؤتمرات", "صورة شخصية لأحمد زغلان", "أحمد زغلان أمام علم مصر"],
+    en: ["Ahmed Zoghlan in a conference hall", "Portrait of Ahmed Zoghlan", "Ahmed Zoghlan in front of the Egyptian flag"]
+  },
   contact: {
     linkedin: "https://www.linkedin.com/in/ahmedzoghlan",
+    whatsapp: "https://wa.me/201061131537",
+    facebook: "https://www.facebook.com/share/1JrXGLwsty/",
+    instagram: "https://www.instagram.com/ahmed.zoghlan",
     showForm: true
   },
   assistant: { enabled: true }
