@@ -20,7 +20,7 @@ function adminBase(){ return location.href.split('#')[0]; }
 
 /* ---------- views ---------- */
 function renderLogin(note){
-  app.innerHTML = '<div class="center-box"><h1>لوحة إدارة الموقع</h1><p>تسجيل الدخول</p>'+
+  app.innerHTML = '<div class="center-box"><img class="login-logo" src="../assets/img/logo-256.png" alt="شعار أحمد زغلان"><h1>لوحة إدارة الموقع</h1><p>تسجيل الدخول</p>'+
     '<form id="lf"><label>اسم المستخدم</label><input id="lu" autocomplete="username" required>'+
     '<label>كلمة المرور</label><input id="lp" type="password" autocomplete="current-password" required>'+
     '<div style="margin-top:16px"><button class="btn primary" type="submit">دخول</button></div>'+
@@ -70,7 +70,7 @@ function shell(tab, inner){
     if(x[0]==='messages' && !hasPerm('messages')) return '';
     return '<a href="javascript:void(0)" data-tab="'+x[0]+'" class="'+(tab===x[0]?'active':'')+'">'+x[1]+'</a>';
   }).join('');
-  app.innerHTML='<div class="layout"><div class="side"><div class="brand">أحمد زغلان</div>'+nav+
+  app.innerHTML='<div class="layout"><div class="side"><div class="brand"><img class="brand-logo" src="../assets/img/logo-256.png" alt=""> أحمد زغلان</div>'+nav+
     '<a href="javascript:void(0)" id="logoutBtn" class="out">خروج</a></div><div class="main" id="mainBody">'+inner+'</div></div>';
   app.querySelectorAll('.side a[data-tab]').forEach(function(a){
     a.addEventListener('click', function(){ renderDash(a.getAttribute('data-tab')); });

@@ -50,3 +50,9 @@ h3{margin:0 0 12px;font-size:1.02rem}
 .photo-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
 .photo-fields{flex:1}
 .thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--line);flex:none}
+
+/* logo */
+.login-logo{display:block;width:88px;height:88px;margin:0 auto 14px}
+.side .brand{display:flex;align-items:center;gap:10px}
+.brand-logo{width:30px;height:30px;flex:none}
+@media(max-width:760px){.side .brand{gap:8px}.brand-logo{width:24px;height:24px}}
