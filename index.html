@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://lh3.googleusercontent.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
 </head>
 <body data-page="index">
 <header class="topbar">
@@ -34,6 +34,57 @@
   </div>
 </header>
 
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-photo hidden" id="heroPhoto"><img id="heroImg" alt=""></div>
+    <h1 id="heroName"></h1>
+    <p class="hero-title" id="heroTitle"></p>
+    <div class="hero-badges">
+      <span class="hero-badge" id="heroBadge"></span>
+      <span class="hero-badge hero-badge-alt" id="heroBadge2"></span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn primary" id="heroLinkedin" target="_blank" rel="noopener" data-i18n="cta_linkedin">LinkedIn</a>
+      <a class="btn ghost" href="contact.html" data-i18n="cta_contact">تواصل معي</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap main">
+  <section class="panel">
+    <h2 data-i18n="sec_about">نبذة مهنية</h2>
+    <p id="aboutText" class="lead"></p>
+    <div class="facts" id="facts"></div>
+  </section>
+
+  <h2 class="home-sections-title" data-i18n="home_sections">الأقسام</h2>
+  <div class="sec-grid">
+    <a class="sec-card" href="experience.html"><h3 data-i18n="tab_exp">الخبرات</h3><p data-i18n="d_exp">الأدوار والمشروعات</p></a>
+    <a class="sec-card" href="skills.html"><h3 data-i18n="tab_skills">المهارات والتعليم</h3><p data-i18n="d_skills">المهارات والتعليم والتدريب</p></a>
+    <a class="sec-card" href="leadership.html"><h3 data-i18n="tab_lead">القيادة والعمل العام</h3><p data-i18n="d_lead">القيادة والتمثيل والعمل العام</p></a>
+    <a class="sec-card" href="photos.html"><h3 data-i18n="tab_photos">صور</h3><p data-i18n="d_photos">صور من المناسبات والأنشطة</p></a>
+    <a class="sec-card" href="contact.html"><h3 data-i18n="tab_contact">تواصل</h3><p data-i18n="d_contact">قنوات التواصل ونموذج الرسائل</p></a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap" id="footerText"></div>
+</footer>
+
+<button id="chatFab" class="chat-fab" aria-label="Assistant">✦</button>
+<div id="chatBox" class="chat-box hidden">
+  <div class="chat-head"><span data-i18n="chat_title">مساعد الموقع</span><button id="chatClose" aria-label="Close">×</button></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <form class="chat-form" id="chatForm">
+    <input type="text" id="chatInput" data-i18n-ph="chat_ph" placeholder="اسأل عن أحمد..." maxlength="500" autocomplete="off">
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+
+<script src="assets/js/data.js?v=5"></script>
+<script src="assets/js/site.js?v=5"></script>
+</body>
+</html>
 <section class="hero">
   <div class="wrap hero-in">
     <div class="hero-photo hidden" id="heroPhoto"><img id="heroImg" alt=""></div>
