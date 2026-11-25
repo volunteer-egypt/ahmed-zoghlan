@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://lh3.googleusercontent.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
 </head>
 <body data-page="photos">
 <header class="topbar">
@@ -34,6 +34,31 @@
   </div>
 </header>
 
+<main class="wrap main">
+  <div class="page-head"><h1 data-i18n="sec_photos">صور</h1><a class="back-link" href="index.html" data-i18n="back_home">العودة للرئيسية</a></div>
+  <section class="panel">
+    <div class="gallery" id="gallery"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap" id="footerText"></div>
+</footer>
+
+<button id="chatFab" class="chat-fab" aria-label="Assistant">✦</button>
+<div id="chatBox" class="chat-box hidden">
+  <div class="chat-head"><span data-i18n="chat_title">مساعد الموقع</span><button id="chatClose" aria-label="Close">×</button></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <form class="chat-form" id="chatForm">
+    <input type="text" id="chatInput" data-i18n-ph="chat_ph" placeholder="اسأل عن أحمد..." maxlength="500" autocomplete="off">
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+
+<script src="assets/js/data.js?v=5"></script>
+<script src="assets/js/site.js?v=5"></script>
+</body>
+</html>
 <main class="wrap main">
   <div class="page-head"><h1 data-i18n="sec_photos">صور</h1><a class="back-link" href="index.html" data-i18n="back_home">العودة للرئيسية</a></div>
   <section class="panel">
