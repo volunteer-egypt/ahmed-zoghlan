@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تواصل | أحمد زغلان</title>
+<meta name="description" content="أحمد زغلان — أخصائي مخازن في مشروعات التشييد والبنية التحتية، وعضو برلمان شباب مصر (الدورة الحالية 2026) | Ahmed Zoghlan — Storekeeper Specialist and Member, Egyptian Youth Parliament">
+<meta property="og:title" content="تواصل | أحمد زغلان">
+<meta property="og:description" content="أحمد زغلان — أخصائي مخازن في مشروعات التشييد والبنية التحتية، وعضو برلمان شباب مصر (الدورة الحالية 2026). Ahmed Zoghlan — Storekeeper Specialist and Member, Egyptian Youth Parliament.">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="https://lh3.googleusercontent.com/d/1uUsqMM9WvQAByBOzwxUGhfP0xMjPg6Vi">
+<meta name="theme-color" content="#0c1f33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://lh3.googleusercontent.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
+</head>
+<body data-page="contact">
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" id="brand" href="index.html">أحمد زغلان</a>
+    <div class="scroll-wrap nav-wrap">
+    <nav class="topnav" id="topnav" aria-label="Site pages">
+      <a href="index.html" data-nav="index" data-i18n="nav_home">الرئيسية</a>
+      <a href="experience.html" data-nav="experience" data-i18n="tab_exp">الخبرات</a>
+      <a href="skills.html" data-nav="skills" data-i18n="tab_skills">المهارات والتعليم</a>
+      <a href="leadership.html" data-nav="leadership" data-i18n="tab_lead">القيادة والعمل العام</a>
+      <a href="photos.html" data-nav="photos" data-i18n="tab_photos">صور</a>
+      <a href="contact.html" data-nav="contact" data-i18n="tab_contact">تواصل</a>
+    </nav>
+    </div>
+    <button class="lang-toggle" id="langToggle" aria-label="Language">EN</button>
+  </div>
+</header>
+
+<main class="wrap main">
+  <div class="page-head"><h1 data-i18n="sec_contact">تواصل</h1><a class="back-link" href="index.html" data-i18n="back_home">العودة للرئيسية</a></div>
+  <section class="panel">
+    <div class="contact-box">
+      <p class="contact-note" data-i18n="contact_note">للتواصل المهني</p>
+      <div class="contact-grid" id="contactGrid"></div>
+    </div>
+    <form id="contactForm" class="contact-form">
+      <input type="text" id="cfName" data-i18n-ph="cf_name" placeholder="الاسم" required maxlength="100">
+      <input type="text" id="cfContact" data-i18n-ph="cf_contact" placeholder="وسيلة التواصل (اختياري)" maxlength="150">
+      <textarea id="cfMsg" data-i18n-ph="cf_msg" placeholder="رسالتك" required maxlength="2000" rows="4"></textarea>
+      <button class="btn primary" type="submit" data-i18n="cf_send">إرسال</button>
+      <p class="form-note" id="cfNote"></p>
+    </form>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap" id="footerText"></div>
+</footer>
+
+<button id="chatFab" class="chat-fab" aria-label="Assistant">✦</button>
+<div id="chatBox" class="chat-box hidden">
+  <div class="chat-head"><span data-i18n="chat_title">مساعد الموقع</span><button id="chatClose" aria-label="Close">×</button></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <form class="chat-form" id="chatForm">
+    <input type="text" id="chatInput" data-i18n-ph="chat_ph" placeholder="اسأل عن أحمد..." maxlength="500" autocomplete="off">
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+
+<script src="assets/js/data.js?v=5"></script>
+<script src="assets/js/site.js?v=5"></script>
+</body>
+</html>
