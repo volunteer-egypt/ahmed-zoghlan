@@ -90,55 +90,229 @@ function renderDash(tab){
 }
 
 /* ---------- content tab ---------- */
+var C = null;
+
+function gv(id){ var e=document.getElementById(id); return e?e.value:''; }
+function gc(id){ var e=document.getElementById(id); return e?e.checked:false; }
+
+function paintSingles(listId, arr, ph){
+  document.getElementById(listId).innerHTML = (arr||[]).map(function(s,i){
+    return '<div class="item-row"><input class="sg_v" value="'+esc(s||'')+'" placeholder="'+esc(ph||'')+'">'+
+      '<button type="button" class="btn danger small row-del" data-list="'+listId+'" data-single="1" data-i="'+i+'">حذف</button></div>';
+  }).join('') || '<p class="note">لا عناصر بعد — أضف من الزر أدناه.</p>';
+}
+function collectSingles(listId){
+  var out=[];
+  document.querySelectorAll('#'+listId+' .item-row .sg_v').forEach(function(e){ if(e.value.trim()) out.push(e.value.trim()); });
+  return out;
+}
+function paintPairs(listId, arr){
+  document.getElementById(listId).innerHTML = (arr||[]).map(function(it,i){
+    return '<div class="item-row"><input class="pr_ar" value="'+esc(it.ar||'')+'" placeholder="عربي">'+
+      '<input class="pr_en" dir="ltr" value="'+esc(it.en||'')+'" placeholder="English">'+
+      '<button type="button" class="btn danger small row-del" data-list="'+listId+'" data-i="'+i+'">حذف</button></div>';
+  }).join('') || '<p class="note">لا عناصر بعد — أضف من الزر أدناه.</p>';
+}
+function collectPairs(listId){
+  var out=[];
+  document.querySelectorAll('#'+listId+' .item-row').forEach(function(r){
+    out.push({ar:r.querySelector('.pr_ar').value.trim(), en:r.querySelector('.pr_en').value.trim()});
+  });
+  return out;
+}
+
+function paintExp(){
+  document.getElementById('expList').innerHTML = (C.experience||[]).map(function(x,i){
+    return '<div class="exp-card" data-i="'+i+'"><div class="exp-head"><strong>خبرة '+(i+1)+'</strong><span>'+
+      '<button type="button" class="btn small exp-up" data-i="'+i+'" title="أعلى">↑</button> '+
+      '<button type="button" class="btn small exp-dn" data-i="'+i+'" title="أسفل">↓</button> '+
+      '<button type="button" class="btn danger small exp-del" data-i="'+i+'">حذف</button></span></div>'+
+      '<div class="grid2"><div><label>الجهة (عربي)</label><input class="x_org_ar" value="'+esc(x.org_ar||'')+'"></div>'+
+      '<div><label>الجهة (إنجليزي)</label><input class="x_org_en" dir="ltr" value="'+esc(x.org_en||'')+'"></div>'+
+      '<div><label>الدور (عربي)</label><input class="x_role_ar" value="'+esc(x.role_ar||'')+'"></div>'+
+      '<div><label>الدور (إنجليزي)</label><input class="x_role_en" dir="ltr" value="'+esc(x.role_en||'')+'"></div>'+
+      '<div><label>من (عربي)</label><input class="x_from_ar" value="'+esc(x.from_ar||'')+'"></div>'+
+      '<div><label>من (إنجليزي)</label><input class="x_from_en" dir="ltr" value="'+esc(x.from_en||'')+'"></div>'+
+      '<div><label>إلى (عربي)</label><input class="x_to_ar" value="'+esc(x.to_ar||'')+'"></div>'+
+      '<div><label>إلى (إنجليزي)</label><input class="x_to_en" dir="ltr" value="'+esc(x.to_en||'')+'"></div></div>'+
+      '<label>النقاط (عربي) — سطر لكل نقطة</label><textarea class="x_pts_ar" rows="3">'+esc((x.points_ar||[]).join('\n'))+'</textarea>'+
+      '<label>النقاط (إنجليزي) — سطر لكل نقطة</label><textarea class="x_pts_en" dir="ltr" rows="3">'+esc((x.points_en||[]).join('\n'))+'</textarea></div>';
+  }).join('') || '<p class="note">لا خبرات بعد — أضف من الزر أدناه.</p>';
+}
+function collectExp(){
+  var out=[];
+  document.querySelectorAll('#expList .exp-card').forEach(function(card){
+    var g=function(cls){ var e=card.querySelector(cls); return e?e.value.trim():''; };
+    out.push({
+      org_ar:g('.x_org_ar'), org_en:g('.x_org_en'),
+      role_ar:g('.x_role_ar'), role_en:g('.x_role_en'),
+      from_ar:g('.x_from_ar'), from_en:g('.x_from_en'),
+      to_ar:g('.x_to_ar'), to_en:g('.x_to_en'),
+      points_ar:g('.x_pts_ar').split('\n').map(function(s){return s.trim();}).filter(Boolean),
+      points_en:g('.x_pts_en').split('\n').map(function(s){return s.trim();}).filter(Boolean)
+    });
+  });
+  C.experience = out;
+}
+
+function paintPhotos(){
+  var altsAr=(C.photo_alts&&C.photo_alts.ar)||[], altsEn=(C.photo_alts&&C.photo_alts.en)||[];
+  document.getElementById('photoList').innerHTML = (C.photos||[]).map(function(u,i){
+    return '<div class="photo-row"><img class="thumb" src="'+esc(u)+'" alt="" onerror="this.style.visibility=\'hidden\'">'+
+      '<div class="photo-fields"><input class="ph_url" dir="ltr" value="'+esc(u)+'" placeholder="رابط الصورة">'+
+      '<div class="grid2"><div><input class="ph_alt_ar" value="'+esc(altsAr[i]||'')+'" placeholder="وصف الصورة (عربي)"></div>'+
+      '<div><input class="ph_alt_en" dir="ltr" value="'+esc(altsEn[i]||'')+'" placeholder="Alt text (English)"></div></div></div>'+
+      '<button type="button" class="btn danger small photo-del" data-i="'+i+'">حذف</button></div>';
+  }).join('') || '<p class="note">لا صور بعد.</p>';
+}
+function collectPhotos(){
+  var urls=[], aAr=[], aEn=[];
+  document.querySelectorAll('#photoList .photo-row').forEach(function(r){
+    var u=r.querySelector('.ph_url').value.trim();
+    if(!u) return;
+    urls.push(u);
+    aAr.push(r.querySelector('.ph_alt_ar').value.trim());
+    aEn.push(r.querySelector('.ph_alt_en').value.trim());
+  });
+  C.photos=urls; C.photo_alts={ar:aAr, en:aEn};
+}
+
+function syncLists(){
+  collectExp();
+  C.skills={ar:collectSingles('skillsList'), en:collectSingles('skillsEnList')};
+  C.training=collectPairs('trainingList');
+  C.leadership=collectPairs('leadershipList');
+  C.community=collectPairs('communityList');
+  collectPhotos();
+}
+function paintLists(){
+  paintExp();
+  paintSingles('skillsList', (C.skills&&C.skills.ar)||[], 'مهارة بالعربي');
+  paintSingles('skillsEnList', (C.skills&&C.skills.en)||[], 'Skill in English');
+  paintPairs('trainingList', C.training||[]);
+  paintPairs('leadershipList', C.leadership||[]);
+  paintPairs('communityList', C.community||[]);
+  paintPhotos();
+}
+
 function tabContent(){
   api('getContent',{token:S.token}).then(function(res){
-    var c = (res && res.ok && res.content) ? res.content : JSON.parse(JSON.stringify(window.SITE_DATA));
+    C = (res && res.ok && res.content) ? res.content : JSON.parse(JSON.stringify(window.SITE_DATA));
+    C.experience=C.experience||[]; C.training=C.training||[]; C.leadership=C.leadership||[];
+    C.community=C.community||[]; C.photos=C.photos||[]; C.photo_alts=C.photo_alts||{ar:[],en:[]};
+    C.contact=C.contact||{}; C.assistant=C.assistant||{};
     var f = function(v){ return esc(v==null?'':v); };
-    var inner='<h2>محتوى الموقع</h2><div class="card">'+
-      '<div class="grid2"><div><label>الاسم (عربي)</label><input id="c_name_ar" value="'+f(c.meta.name_ar)+'"></div>'+
-      '<div><label>الاسم (إنجليزي)</label><input id="c_name_en" value="'+f(c.meta.name_en)+'"></div>'+
-      '<div><label>اللقب المهني (عربي)</label><input id="c_title_ar" value="'+f(c.meta.title_ar)+'"></div>'+
-      '<div><label>اللقب المهني (إنجليزي)</label><input id="c_title_en" value="'+f(c.meta.title_en)+'"></div>'+
-      '<div><label>الموقع/البلد (عربي)</label><input id="c_loc_ar" value="'+f(c.meta.location_ar)+'"></div>'+
-      '<div><label>الموقع/البلد (إنجليزي)</label><input id="c_loc_en" value="'+f(c.meta.location_en)+'"></div></div>'+
-      '<label>النبذة (عربي)</label><textarea id="c_about_ar" rows="4">'+f(c.about.ar)+'</textarea>'+
-      '<label>النبذة (إنجليزي)</label><textarea id="c_about_en" rows="4">'+f(c.about.en)+'</textarea>'+
-      '<div class="grid2"><div><label>الخدمة العسكرية (عربي)</label><input id="c_service_ar" value="'+f(c.service?c.service.ar:'')+'"></div>'+
-      '<div><label>الخدمة العسكرية (إنجليزي)</label><input id="c_service_en" value="'+f(c.service?c.service.en:'')+'"></div></div>'+
-      '<div class="grid2"><div><label>التعليم (عربي)</label><input id="c_edu_ar" value="'+f(c.education.ar)+'"></div>'+
-      '<div><label>التعليم (إنجليزي)</label><input id="c_edu_en" value="'+f(c.education.en)+'"></div></div>'+
-      '<label>لينكدإن</label><input id="c_linkedin" dir="ltr" value="'+f(c.contact.linkedin)+'"></div>'+
-      '<div class="card"><label>الخبرات (JSON — عربي/إنجليزي)</label><textarea id="c_exp" rows="10" dir="ltr" style="text-align:left;font-family:monospace;font-size:.82rem">'+f(JSON.stringify(c.experience,null,1))+'</textarea></div>'+
-      '<div class="card"><label>المهارات (JSON)</label><textarea id="c_skills" rows="4" dir="ltr" style="text-align:left;font-family:monospace;font-size:.82rem">'+f(JSON.stringify(c.skills,null,1))+'</textarea>'+
-      '<label>التدريبات (JSON)</label><textarea id="c_training" rows="5" dir="ltr" style="text-align:left;font-family:monospace;font-size:.82rem">'+f(JSON.stringify(c.training,null,1))+'</textarea>'+
-      '<label>الأنشطة القيادية (JSON)</label><textarea id="c_leadership" rows="5" dir="ltr" style="text-align:left;font-family:monospace;font-size:.82rem">'+f(JSON.stringify(c.leadership,null,1))+'</textarea>'+
-      '<label>العمل المجتمعي (JSON)</label><textarea id="c_community" rows="3" dir="ltr" style="text-align:left;font-family:monospace;font-size:.82rem">'+f(JSON.stringify(c.community||[],null,1))+'</textarea></div>'+
-      '<div class="card"><label>روابط الصور (رابط في كل سطر)</label><textarea id="c_photos" rows="4" dir="ltr" style="text-align:left">'+f((c.photos||[]).join('\n'))+'</textarea>'+
-      '<label><input type="checkbox" id="c_showform" style="width:auto" '+(c.contact.showForm?'checked':'')+'> إظهار نموذج التواصل</label>'+
-      '<label><input type="checkbox" id="c_assistant" style="width:auto" '+((c.assistant&&c.assistant.enabled)?'checked':'')+'> تفعيل مساعد الموقع الذكي</label></div>'+
-      '<div style="margin-top:6px"><button class="btn primary" id="saveBtn">حفظ ونشر</button> <span class="note" id="saveNote"></span></div>';
+    var inner='<h2>محتوى الموقع</h2>'+
+    '<div class="card"><h3>الأساسيات</h3>'+
+      '<div class="grid2"><div><label>الاسم (عربي)</label><input id="c_name_ar" value="'+f(C.meta.name_ar)+'"></div>'+
+      '<div><label>الاسم (إنجليزي)</label><input id="c_name_en" dir="ltr" value="'+f(C.meta.name_en)+'"></div>'+
+      '<div><label>اللقب المهني (عربي)</label><input id="c_title_ar" value="'+f(C.meta.title_ar)+'"></div>'+
+      '<div><label>اللقب المهني (إنجليزي)</label><input id="c_title_en" dir="ltr" value="'+f(C.meta.title_en)+'"></div>'+
+      '<div><label>الموقع/البلد (عربي)</label><input id="c_loc_ar" value="'+f(C.meta.location_ar)+'"></div>'+
+      '<div><label>الموقع/البلد (إنجليزي)</label><input id="c_loc_en" dir="ltr" value="'+f(C.meta.location_en)+'"></div>'+
+      '<div><label>الشارة الإضافية تحت اللقب (عربي)</label><input id="c_hx_ar" value="'+f(C.hero_extra_ar)+'"></div>'+
+      '<div><label>الشارة الإضافية (إنجليزي)</label><input id="c_hx_en" dir="ltr" value="'+f(C.hero_extra_en)+'"></div></div>'+
+      '<label>النبذة (عربي)</label><textarea id="c_about_ar" rows="4">'+f(C.about.ar)+'</textarea>'+
+      '<label>النبذة (إنجليزي)</label><textarea id="c_about_en" dir="ltr" rows="4">'+f(C.about.en)+'</textarea>'+
+      '<div class="grid2"><div><label>الخدمة العسكرية (عربي)</label><input id="c_service_ar" value="'+f(C.service?C.service.ar:'')+'"></div>'+
+      '<div><label>الخدمة العسكرية (إنجليزي)</label><input id="c_service_en" dir="ltr" value="'+f(C.service?C.service.en:'')+'"></div>'+
+      '<div><label>التعليم (عربي)</label><input id="c_edu_ar" value="'+f(C.education.ar)+'"></div>'+
+      '<div><label>التعليم (إنجليزي)</label><input id="c_edu_en" dir="ltr" value="'+f(C.education.en)+'"></div></div></div>'+
+    '<div class="card"><h3>الخبرات العملية</h3><div id="expList"></div>'+
+      '<button type="button" class="btn dark small" id="expAdd">+ إضافة خبرة</button></div>'+
+    '<div class="card"><h3>المهارات (عربي)</h3><div id="skillsList"></div>'+
+      '<button type="button" class="btn dark small pair-add" data-single="1" data-list="skillsList">+ إضافة مهارة</button>'+
+      '<h3 style="margin-top:14px">المهارات (إنجليزي)</h3><div id="skillsEnList"></div>'+
+      '<button type="button" class="btn dark small pair-add" data-single="1" data-list="skillsEnList">+ Add skill</button></div>'+
+    '<div class="card"><h3>التدريبات</h3><div id="trainingList"></div>'+
+      '<button type="button" class="btn dark small pair-add" data-list="trainingList">+ إضافة تدريب</button></div>'+
+    '<div class="card"><h3>القيادة والعمل العام</h3><div id="leadershipList"></div>'+
+      '<button type="button" class="btn dark small pair-add" data-list="leadershipList">+ إضافة بند</button></div>'+
+    '<div class="card"><h3>العمل المجتمعي</h3><div id="communityList"></div>'+
+      '<button type="button" class="btn dark small pair-add" data-list="communityList">+ إضافة بند</button></div>'+
+    '<div class="card"><h3>الصور</h3>'+
+      '<label>صورة الواجهة الرئيسية</label>'+
+      '<div class="photo-row"><img class="thumb" id="c_hero_thumb" src="'+f(C.hero_photo)+'" alt="" onerror="this.style.visibility=\'hidden\'">'+
+      '<div class="photo-fields"><input id="c_hero" dir="ltr" value="'+f(C.hero_photo)+'" placeholder="رابط صورة الواجهة"></div></div>'+
+      '<label style="margin-top:10px">معرض الصور</label><div id="photoList"></div>'+
+      '<input type="file" id="photoFile" accept="image/*" style="display:none">'+
+      '<button type="button" class="btn dark small" id="photoAddUrl">+ إضافة صورة برابط</button> '+
+      '<button type="button" class="btn primary small" id="photoUpload">رفع صورة من الجهاز</button> '+
+      '<span class="note" id="photoNote"></span></div>'+
+    '<div class="card"><h3>التواصل</h3>'+
+      '<div class="grid2"><div><label>لينكدإن</label><input id="c_linkedin" dir="ltr" value="'+f(C.contact.linkedin)+'"></div>'+
+      '<div><label>واتساب</label><input id="c_whatsapp" dir="ltr" value="'+f(C.contact.whatsapp)+'"></div>'+
+      '<div><label>فيسبوك</label><input id="c_facebook" dir="ltr" value="'+f(C.contact.facebook)+'"></div>'+
+      '<div><label>إنستغرام</label><input id="c_instagram" dir="ltr" value="'+f(C.contact.instagram)+'"></div></div>'+
+      '<label><input type="checkbox" id="c_showform" style="width:auto" '+(C.contact.showForm?'checked':'')+'> إظهار نموذج التواصل</label>'+
+      '<label><input type="checkbox" id="c_assistant" style="width:auto" '+(C.assistant.enabled?'checked':'')+'> تفعيل مساعد الموقع الذكي</label></div>'+
+    '<div style="position:sticky;bottom:10px;text-align:center"><button class="btn primary" id="saveBtn" style="box-shadow:0 6px 20px rgba(0,0,0,.25)">حفظ ونشر</button> <span class="note" id="saveNote"></span></div>';
     shell('content', inner);
+    paintLists();
+
+    /* list mutations */
+    document.getElementById('mainBody').addEventListener('click', function(ev){
+      var b=ev.target.closest('button'); if(!b) return;
+      if(b.classList.contains('pair-add')){
+        var listId=b.getAttribute('data-list');
+        if(b.getAttribute('data-single')){ var sa=collectSingles(listId); sa.push(''); paintSingles(listId, sa); }
+        else { var arr=collectPairs(listId); arr.push({ar:'',en:''}); paintPairs(listId, arr); }
+      }
+      if(b.classList.contains('row-del')){
+        var listId2=b.getAttribute('data-list');
+        if(b.getAttribute('data-single')){ var sa2=collectSingles(listId2); sa2.splice(+b.getAttribute('data-i'),1); paintSingles(listId2, sa2); }
+        else { var arr2=collectPairs(listId2); arr2.splice(+b.getAttribute('data-i'),1); paintPairs(listId2, arr2); }
+      }
+      if(b.id==='expAdd'){ collectExp(); C.experience.push({org_ar:'',org_en:'',role_ar:'',role_en:'',from_ar:'',from_en:'',to_ar:'',to_en:'',points_ar:[],points_en:[]}); paintExp(); }
+      if(b.classList.contains('exp-del')){ collectExp(); C.experience.splice(+b.getAttribute('data-i'),1); paintExp(); }
+      if(b.classList.contains('exp-up')||b.classList.contains('exp-dn')){
+        collectExp(); var i=+b.getAttribute('data-i'); var j=b.classList.contains('exp-up')?i-1:i+1;
+        if(j>=0&&j<C.experience.length){ var t=C.experience[i]; C.experience[i]=C.experience[j]; C.experience[j]=t; paintExp(); }
+      }
+      if(b.id==='photoAddUrl'){ collectPhotos(); C.photos.push(''); C.photo_alts.ar.push(''); C.photo_alts.en.push(''); paintPhotos(); }
+      if(b.classList.contains('photo-del')){ collectPhotos(); var k=+b.getAttribute('data-i'); C.photos.splice(k,1); C.photo_alts.ar.splice(k,1); C.photo_alts.en.splice(k,1); paintPhotos(); }
+      if(b.id==='photoUpload'){ document.getElementById('photoFile').click(); }
+    });
+
+    document.getElementById('photoFile').addEventListener('change', function(ev){
+      var file=ev.target.files[0]; if(!file) return;
+      var note=document.getElementById('photoNote');
+      note.className='note'; note.textContent='جارٍ الرفع...';
+      var rd=new FileReader();
+      rd.onload=function(){
+        var b64=String(rd.result).split(',')[1]||'';
+        api('uploadPhoto',{token:S.token, filename:file.name, mime:file.type||'image/jpeg', data:b64}).then(function(r){
+          if(r&&r.ok){ collectPhotos(); C.photos.push(r.url); C.photo_alts.ar.push(''); C.photo_alts.en.push(''); paintPhotos(); note.className='note ok'; note.textContent='تم رفع الصورة ✓'; }
+          else { note.className='note err'; note.textContent='فشل الرفع ('+((r&&r.error)||'')+')'; }
+        }).catch(function(){ note.className='note err'; note.textContent='خطأ في الاتصال'; });
+      };
+      rd.readAsDataURL(file);
+      ev.target.value='';
+    });
+
+    document.getElementById('c_hero').addEventListener('input', function(){
+      document.getElementById('c_hero_thumb').src=this.value;
+    });
+
     document.getElementById('saveBtn').addEventListener('click', function(){
       var note=document.getElementById('saveNote');
-      var exp, sk, tr, ld, cm;
-      try{ exp=JSON.parse(document.getElementById('c_exp').value);
-           sk=JSON.parse(document.getElementById('c_skills').value);
-           tr=JSON.parse(document.getElementById('c_training').value);
-           cm=JSON.parse(document.getElementById('c_community').value);
-           ld=JSON.parse(document.getElementById('c_leadership').value);
-      }catch(e){ note.className='note err'; note.textContent='صيغة JSON غير صحيحة في أحد الحقول'; return; }
-      c.meta.name_ar=document.getElementById('c_name_ar').value; c.meta.name_en=document.getElementById('c_name_en').value;
-      c.meta.title_ar=document.getElementById('c_title_ar').value; c.meta.title_en=document.getElementById('c_title_en').value;
-      c.meta.location_ar=document.getElementById('c_loc_ar').value; c.meta.location_en=document.getElementById('c_loc_en').value;
-      c.about.ar=document.getElementById('c_about_ar').value; c.about.en=document.getElementById('c_about_en').value;
-      c.service={ar:document.getElementById('c_service_ar').value, en:document.getElementById('c_service_en').value};
-      c.education={ar:document.getElementById('c_edu_ar').value, en:document.getElementById('c_edu_en').value};
-      c.contact.linkedin=document.getElementById('c_linkedin').value.trim();
-      c.contact.showForm=document.getElementById('c_showform').checked;
-      c.assistant={enabled:document.getElementById('c_assistant').checked};
-      c.photos=document.getElementById('c_photos').value.split('\n').map(function(x){return x.trim();}).filter(Boolean);
-      c.experience=exp; c.skills=sk; c.training=tr; c.leadership=ld; c.community=cm;
-      api('saveContent',{token:S.token, content:c}).then(function(r){
+      C.meta.name_ar=gv('c_name_ar'); C.meta.name_en=gv('c_name_en');
+      C.meta.title_ar=gv('c_title_ar'); C.meta.title_en=gv('c_title_en');
+      C.meta.location_ar=gv('c_loc_ar'); C.meta.location_en=gv('c_loc_en');
+      C.hero_extra_ar=gv('c_hx_ar'); C.hero_extra_en=gv('c_hx_en');
+      C.about.ar=gv('c_about_ar'); C.about.en=gv('c_about_en');
+      C.service={ar:gv('c_service_ar'), en:gv('c_service_en')};
+      C.education={ar:gv('c_edu_ar'), en:gv('c_edu_en')};
+      C.hero_photo=gv('c_hero').trim();
+      C.contact.linkedin=gv('c_linkedin').trim();
+      C.contact.whatsapp=gv('c_whatsapp').trim();
+      C.contact.facebook=gv('c_facebook').trim();
+      C.contact.instagram=gv('c_instagram').trim();
+      C.contact.showForm=gc('c_showform');
+      C.assistant={enabled:gc('c_assistant')};
+      syncLists();
+      note.className='note'; note.textContent='جارٍ الحفظ...';
+      api('saveContent',{token:S.token, content:C}).then(function(r){
         if(r&&r.ok){ note.className='note ok'; note.textContent='تم الحفظ والنشر ✓'; toast('تم نشر المحتوى'); }
         else { note.className='note err'; note.textContent='فشل الحفظ ('+((r&&r.error)||'')+')'; }
       }).catch(function(){ note.className='note err'; note.textContent='خطأ في الاتصال'; });
