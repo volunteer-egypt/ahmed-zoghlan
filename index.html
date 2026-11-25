@@ -14,12 +14,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://lh3.googleusercontent.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
-<body>
+<body data-page="index">
 <header class="topbar">
   <div class="wrap topbar-in">
-    <div class="brand" id="brand">أحمد زغلان</div>
+    <a class="brand" id="brand" href="index.html">أحمد زغلان</a>
+    <div class="scroll-wrap nav-wrap">
+    <nav class="topnav" id="topnav" aria-label="Site pages">
+      <a href="index.html" data-nav="index" data-i18n="nav_home">الرئيسية</a>
+      <a href="experience.html" data-nav="experience" data-i18n="tab_exp">الخبرات</a>
+      <a href="skills.html" data-nav="skills" data-i18n="tab_skills">المهارات والتعليم</a>
+      <a href="leadership.html" data-nav="leadership" data-i18n="tab_lead">القيادة والعمل العام</a>
+      <a href="photos.html" data-nav="photos" data-i18n="tab_photos">صور</a>
+      <a href="contact.html" data-nav="contact" data-i18n="tab_contact">تواصل</a>
+    </nav>
+    </div>
     <button class="lang-toggle" id="langToggle" aria-label="Language">EN</button>
   </div>
 </header>
@@ -35,69 +45,26 @@
     </div>
     <div class="hero-cta">
       <a class="btn primary" id="heroLinkedin" target="_blank" rel="noopener" data-i18n="cta_linkedin">LinkedIn</a>
-      <a class="btn ghost" href="#contact" data-tablink="contact" data-i18n="cta_contact">تواصل معي</a>
+      <a class="btn ghost" href="contact.html" data-i18n="cta_contact">تواصل معي</a>
     </div>
   </div>
 </section>
 
 <main class="wrap main">
-  <div class="tabs-wrap">
-  <div class="tabs" id="tabs" role="tablist" aria-label="Site sections">
-    <button class="tab" id="tab-about" data-tab="about" role="tab" aria-selected="true" aria-controls="panel-about" tabindex="0" data-i18n="tab_about">نبذة</button>
-    <button class="tab" id="tab-experience" data-tab="experience" role="tab" aria-selected="false" aria-controls="panel-experience" tabindex="-1" data-i18n="tab_exp">الخبرات</button>
-    <button class="tab" id="tab-skills" data-tab="skills" role="tab" aria-selected="false" aria-controls="panel-skills" tabindex="-1" data-i18n="tab_skills">المهارات والتعليم</button>
-    <button class="tab" id="tab-leadership" data-tab="leadership" role="tab" aria-selected="false" aria-controls="panel-leadership" tabindex="-1" data-i18n="tab_lead">القيادة والعمل العام</button>
-    <button class="tab" id="tab-photos" data-tab="photos" role="tab" aria-selected="false" aria-controls="panel-photos" tabindex="-1" data-i18n="tab_photos">صور</button>
-    <button class="tab" id="tab-contact" data-tab="contact" role="tab" aria-selected="false" aria-controls="panel-contact" tabindex="-1" data-i18n="tab_contact">تواصل</button>
-  </div>
-  </div>
-
-  <section class="panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
+  <section class="panel">
     <h2 data-i18n="sec_about">نبذة مهنية</h2>
     <p id="aboutText" class="lead"></p>
     <div class="facts" id="facts"></div>
   </section>
 
-  <section class="panel hidden" id="panel-experience" role="tabpanel" aria-labelledby="tab-experience">
-    <h2 data-i18n="sec_exp">الخبرات العملية</h2>
-    <div class="timeline" id="timeline"></div>
-    <p class="service-line" id="serviceLine"></p>
-  </section>
-
-  <section class="panel hidden" id="panel-skills" role="tabpanel" aria-labelledby="tab-skills">
-    <h2 data-i18n="sec_skills">المهارات</h2>
-    <div class="tags" id="skillsTags"></div>
-    <h3 data-i18n="sec_edu">التعليم والتدريب</h3>
-    <p class="lead-sm" id="eduText"></p>
-    <ul class="grid-list" id="trainingList"></ul>
-  </section>
-
-  <section class="panel hidden" id="panel-leadership" role="tabpanel" aria-labelledby="tab-leadership">
-    <h2 data-i18n="sec_lead">الأنشطة القيادية والتمثيل</h2>
-    <ul class="grid-list" id="leadershipList"></ul>
-    <h3 data-i18n="sec_community">العمل المجتمعي</h3>
-    <ul class="grid-list" id="communityList"></ul>
-  </section>
-
-  <section class="panel hidden" id="panel-photos" role="tabpanel" aria-labelledby="tab-photos">
-    <h2 data-i18n="sec_photos">صور</h2>
-    <div class="gallery" id="gallery"></div>
-  </section>
-
-  <section class="panel hidden" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact">
-    <h2 data-i18n="sec_contact">تواصل</h2>
-    <div class="contact-box">
-      <p class="contact-note" data-i18n="contact_note">للتواصل المهني عبر LinkedIn</p>
-      <div class="contact-grid" id="contactGrid"></div>
-    </div>
-    <form id="contactForm" class="contact-form">
-      <input type="text" id="cfName" data-i18n-ph="cf_name" placeholder="الاسم" required maxlength="100">
-      <input type="text" id="cfContact" data-i18n-ph="cf_contact" placeholder="وسيلة التواصل (اختياري)" maxlength="150">
-      <textarea id="cfMsg" data-i18n-ph="cf_msg" placeholder="رسالتك" required maxlength="2000" rows="4"></textarea>
-      <button class="btn primary" type="submit" data-i18n="cf_send">إرسال</button>
-      <p class="form-note" id="cfNote"></p>
-    </form>
-  </section>
+  <h2 class="home-sections-title" data-i18n="home_sections">الأقسام</h2>
+  <div class="sec-grid">
+    <a class="sec-card" href="experience.html"><h3 data-i18n="tab_exp">الخبرات</h3><p data-i18n="d_exp">الأدوار والمشروعات</p></a>
+    <a class="sec-card" href="skills.html"><h3 data-i18n="tab_skills">المهارات والتعليم</h3><p data-i18n="d_skills">المهارات والتعليم والتدريب</p></a>
+    <a class="sec-card" href="leadership.html"><h3 data-i18n="tab_lead">القيادة والعمل العام</h3><p data-i18n="d_lead">القيادة والتمثيل والعمل العام</p></a>
+    <a class="sec-card" href="photos.html"><h3 data-i18n="tab_photos">صور</h3><p data-i18n="d_photos">صور من المناسبات والأنشطة</p></a>
+    <a class="sec-card" href="contact.html"><h3 data-i18n="tab_contact">تواصل</h3><p data-i18n="d_contact">قنوات التواصل ونموذج الرسائل</p></a>
+  </div>
 </main>
 
 <footer class="footer">
@@ -114,7 +81,7 @@
   </form>
 </div>
 
-<script src="assets/js/data.js?v=3"></script>
-<script src="assets/js/site.js?v=3"></script>
+<script src="assets/js/data.js?v=4"></script>
+<script src="assets/js/site.js?v=4"></script>
 </body>
 </html>
