@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://lh3.googleusercontent.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
 </head>
 <body data-page="contact">
 <header class="topbar">
@@ -34,6 +34,42 @@
   </div>
 </header>
 
+<main class="wrap main">
+  <div class="page-head"><h1 data-i18n="sec_contact">تواصل</h1><a class="back-link" href="index.html" data-i18n="back_home">العودة للرئيسية</a></div>
+  <section class="panel">
+    <div class="contact-box">
+      <p class="contact-note" data-i18n="contact_note">للتواصل المهني</p>
+      <div class="contact-grid" id="contactGrid"></div>
+    </div>
+    <form id="contactForm" class="contact-form">
+      <input type="text" id="cfName" data-i18n-ph="cf_name" placeholder="الاسم" required maxlength="100">
+      <input type="text" id="cfContact" data-i18n-ph="cf_contact" placeholder="وسيلة التواصل (اختياري)" maxlength="150">
+      <textarea id="cfMsg" data-i18n-ph="cf_msg" placeholder="رسالتك" required maxlength="2000" rows="4"></textarea>
+      <button class="btn primary" type="submit" data-i18n="cf_send">إرسال</button>
+      <p class="form-note" id="cfNote"></p>
+    </form>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap" id="footerText"></div>
+</footer>
+
+<button id="chatFab" class="chat-fab" aria-label="Assistant">✦</button>
+<div id="chatBox" class="chat-box hidden">
+  <div class="chat-head"><span data-i18n="chat_title">مساعد الموقع</span><button id="chatClose" aria-label="Close">×</button></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <form class="chat-form" id="chatForm">
+    <input type="text" id="chatInput" data-i18n-ph="chat_ph" placeholder="اسأل عن أحمد..." maxlength="500" autocomplete="off">
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+
+<script src="assets/js/data.js?v=5"></script>
+<script src="assets/js/site.js?v=5"></script>
+</body>
+</html>
 <main class="wrap main">
   <div class="page-head"><h1 data-i18n="sec_contact">تواصل</h1><a class="back-link" href="index.html" data-i18n="back_home">العودة للرئيسية</a></div>
   <section class="panel">
