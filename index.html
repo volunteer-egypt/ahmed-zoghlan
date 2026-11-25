@@ -41,28 +41,30 @@
 </section>
 
 <main class="wrap main">
-  <div class="tabs" id="tabs" role="tablist">
-    <button class="tab" data-tab="about" role="tab" data-i18n="tab_about">نبذة</button>
-    <button class="tab" data-tab="experience" role="tab" data-i18n="tab_exp">الخبرات</button>
-    <button class="tab" data-tab="skills" role="tab" data-i18n="tab_skills">المهارات والتعليم</button>
-    <button class="tab" data-tab="leadership" role="tab" data-i18n="tab_lead">القيادة والعمل العام</button>
-    <button class="tab" data-tab="photos" role="tab" data-i18n="tab_photos">صور</button>
-    <button class="tab" data-tab="contact" role="tab" data-i18n="tab_contact">تواصل</button>
+  <div class="tabs-wrap">
+  <div class="tabs" id="tabs" role="tablist" aria-label="Site sections">
+    <button class="tab" id="tab-about" data-tab="about" role="tab" aria-selected="true" aria-controls="panel-about" tabindex="0" data-i18n="tab_about">نبذة</button>
+    <button class="tab" id="tab-experience" data-tab="experience" role="tab" aria-selected="false" aria-controls="panel-experience" tabindex="-1" data-i18n="tab_exp">الخبرات</button>
+    <button class="tab" id="tab-skills" data-tab="skills" role="tab" aria-selected="false" aria-controls="panel-skills" tabindex="-1" data-i18n="tab_skills">المهارات والتعليم</button>
+    <button class="tab" id="tab-leadership" data-tab="leadership" role="tab" aria-selected="false" aria-controls="panel-leadership" tabindex="-1" data-i18n="tab_lead">القيادة والعمل العام</button>
+    <button class="tab" id="tab-photos" data-tab="photos" role="tab" aria-selected="false" aria-controls="panel-photos" tabindex="-1" data-i18n="tab_photos">صور</button>
+    <button class="tab" id="tab-contact" data-tab="contact" role="tab" aria-selected="false" aria-controls="panel-contact" tabindex="-1" data-i18n="tab_contact">تواصل</button>
+  </div>
   </div>
 
-  <section class="panel" id="panel-about" role="tabpanel">
+  <section class="panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
     <h2 data-i18n="sec_about">نبذة مهنية</h2>
     <p id="aboutText" class="lead"></p>
     <div class="facts" id="facts"></div>
   </section>
 
-  <section class="panel hidden" id="panel-experience" role="tabpanel">
+  <section class="panel hidden" id="panel-experience" role="tabpanel" aria-labelledby="tab-experience">
     <h2 data-i18n="sec_exp">الخبرات العملية</h2>
     <div class="timeline" id="timeline"></div>
     <p class="service-line" id="serviceLine"></p>
   </section>
 
-  <section class="panel hidden" id="panel-skills" role="tabpanel">
+  <section class="panel hidden" id="panel-skills" role="tabpanel" aria-labelledby="tab-skills">
     <h2 data-i18n="sec_skills">المهارات</h2>
     <div class="tags" id="skillsTags"></div>
     <h3 data-i18n="sec_edu">التعليم والتدريب</h3>
@@ -70,19 +72,19 @@
     <ul class="grid-list" id="trainingList"></ul>
   </section>
 
-  <section class="panel hidden" id="panel-leadership" role="tabpanel">
+  <section class="panel hidden" id="panel-leadership" role="tabpanel" aria-labelledby="tab-leadership">
     <h2 data-i18n="sec_lead">الأنشطة القيادية والتمثيل</h2>
     <ul class="grid-list" id="leadershipList"></ul>
     <h3 data-i18n="sec_community">العمل المجتمعي</h3>
     <ul class="grid-list" id="communityList"></ul>
   </section>
 
-  <section class="panel hidden" id="panel-photos" role="tabpanel">
+  <section class="panel hidden" id="panel-photos" role="tabpanel" aria-labelledby="tab-photos">
     <h2 data-i18n="sec_photos">صور</h2>
     <div class="gallery" id="gallery"></div>
   </section>
 
-  <section class="panel hidden" id="panel-contact" role="tabpanel">
+  <section class="panel hidden" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact">
     <h2 data-i18n="sec_contact">تواصل</h2>
     <div class="contact-box">
       <p class="contact-note" data-i18n="contact_note">للتواصل المهني عبر LinkedIn</p>
