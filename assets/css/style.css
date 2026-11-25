@@ -35,7 +35,13 @@ body{font-family:'Cairo','Inter',system-ui,sans-serif;background:var(--sand);col
 
 /* Tabs */
 .main{margin-top:-26px;position:relative;z-index:5;padding-bottom:36px}
-.tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 8px 24px rgba(12,31,51,.08);overflow-x:auto;scrollbar-width:none;margin-bottom:18px}
+.tabs-wrap{position:relative;margin-bottom:18px}
+.tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 8px 24px rgba(12,31,51,.08);overflow-x:auto;scrollbar-width:none;margin-bottom:0}
+.tabs-wrap::before,.tabs-wrap::after{content:"";position:absolute;top:0;bottom:0;width:34px;z-index:2;pointer-events:none;opacity:0;transition:opacity .2s}
+.tabs-wrap::before{left:0;border-radius:14px 0 0 14px;background:linear-gradient(to right,var(--card),rgba(255,255,255,0))}
+.tabs-wrap::after{right:0;border-radius:0 14px 14px 0;background:linear-gradient(to left,var(--card),rgba(255,255,255,0))}
+.tabs-wrap.can-scroll-left::before{opacity:1}
+.tabs-wrap.can-scroll-right::after{opacity:1}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:1 0 auto;border:none;background:transparent;color:var(--muted);font-family:inherit;font-weight:700;font-size:.92rem;padding:10px 16px;border-radius:9px;cursor:pointer;white-space:nowrap;transition:all .18s}
 .tab:hover{color:var(--navy);background:#eef3f8}
