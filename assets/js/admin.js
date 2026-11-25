@@ -1,5 +1,5 @@
 /* Admin panel — Ahmed Zoghlan personal site */
-var API_URL = 'PASTE_EXEC_URL_HERE';
+var API_URL = 'https://script.google.com/macros/s/AKfycbyJogsSnA5f4_KyxM4hOSYFJC5oeNjS-25r6kCbRRG64P5Ia-D8VBbJU9R_Pn-x_lbA/exec';
 var app = document.getElementById('app');
 var S = { token: sessionStorage.getItem('az_admin') ? JSON.parse(sessionStorage.getItem('az_admin')).token : null,
           name: null, username: null, perms: [] };
